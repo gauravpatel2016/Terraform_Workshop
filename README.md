@@ -4,3 +4,20 @@
 - Terraform (brew install terraform)
 - Docker 
 
+## Basics
+
+#### Install Docker Plugin
+
+```terraform
+terraform {
+  required_providers {
+    docker = {
+      source = "kreuzwerker/docker"
+    }
+  }
+}
+
+# download nodered image
+
+provider "docker" {}
+```
