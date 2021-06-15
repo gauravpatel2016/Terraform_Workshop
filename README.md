@@ -10,7 +10,8 @@
 
 <details>
   <summary>Click to expand!</summary>
-```terraform
+  
+```
 terraform {
   required_providers {
     docker = {
@@ -19,8 +20,7 @@ terraform {
   }
 }
 
-# download nodered image
-
 provider "docker" {}
 ```
 </details>
+
