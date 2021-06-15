@@ -8,6 +8,8 @@
 
 #### Install Docker Plugin
 
+<details>
+  <summary>Click to expand!</summary>
 ```terraform
 terraform {
   required_providers {
@@ -21,3 +23,4 @@ terraform {
 
 provider "docker" {}
 ```
+</details>
