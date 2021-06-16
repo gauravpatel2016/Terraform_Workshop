@@ -88,24 +88,76 @@
 
     [Solution](TF_BASICS/09-Join-Function/main.tf)
 
-20. Now comment out `external` port in main.tf. Why? Because we are going to spin up more containers and we do not want to hard code external port. If you remove external port, docker will choose it for you dynamically. Now create another resource for container. Apply and verify 2 containers. Later destroy everything.
+20. Now comment out `external` port in main.tf. Why? Because we are going to spin up more containers and we do not want to hard code external port. If you remove external port, docker will choose it for you dynamically. Now create another resource for container. You have to add another output too. Apply and verify 2 containers. Later destroy everything.
 
     Resource Name: nodered_container2 <br />
     Name of container: nodered2
 
     [Solution](TF_BASICS/10-Random-Resource/main.tf)
 
-21. Now create 4 containers!!! Nope, you don't have to copy/paste 4 times. Don't stress yourself. Let's do this step by step. Use `count=4` in container resource block. DO NOT RUN APPLY. Check this [document](https://www.terraform.io/docs/language/meta-arguments/count.html) first. Why we can't apply? Think about it.
+21. Now if you're asked to create 4 containers!!! Nope, you don't have to copy/paste 4 times. Don't stress yourself. Let's do this step by step. There is an option to use `count=4` in container resource block. You don't need to add this line for now. Eventhough you add it,DO NOT RUN APPLY. Check this [document](https://www.terraform.io/docs/language/meta-arguments/count.html) first. Why we can't apply? Think about it. 
 
     <details>
     <summary>Let me verify if my answer is correct</summary>
     <p>
-
     ```
     Docker doesn't allow same name containers. So if you set count to 4, it will be failed. 
     ```
-
     </p>
     </details>  
     
-22. 
+22. Lets solve above problem first. Add another block for `Random String`. This block is not supported by Docker provider. You have to run a command which you already learned earlier after you add this block. Then run `terraform apply` Hint: [Random String](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) 
+
+    [Solution](TF_BASICS/10.1-Random-Resource/main.tf)
+
+23. Now run `terraform state list`. What do you notice?
+
+24. Check the output of created random string. You do not need output block. You can verify this string somewhere in the code repository. You have learned it. Think about it.
+
+    [Tooltip Solution](## "terraform show | grep -i result")
+
+25. Alright !! So far so good. Now use a `join` function to add random string to name of the container 1. No Hint. You already know how to do this. 
+
+    [Solution](TF_BASICS/10.2-Random-Resource/main.tf)
+
+26. Create another random block and randomize container 2 name.
+
+    [Solution](TF_BASICS/10.2-Random-Resource/main.tf)
+
+27. Well this code is super messy. 2 random blocks. 2 container blocks. 4 output blocks.Not anywhere near DRY (Do not Repeat Yourself). Remember option `count=4` ??? Comment out everything in your file EXCEPT provider block and first random block. Add `count = 2` to random block. Run `terraform apply`. Verify random string using a command that you learned earlier.
+
+    [Solution](TF_BASICS/10.3-Random-Resource/main.tf)
+
+    [Tooltip Solution](## "terraform show")
+
+28. What do you notice which is different than previous state files? Couldn't see the difference? Follow the steps and see if you notice the difference.
+
+    terraform destroy <br />
+    Comment out `count=2` and run `terraform apply`  <br />
+    Run `terraform state list`  <br />
+    terraform destroy <br />
+    Uncomment out `count=2` and run `terraform apply`  <br />
+    Run `terraform state list` 
+
+29. How about now? Notice `random_string.random[0]` vs `random_string.random` ? If you add `count`, resources output requires indexes.  
+
+30. Delete duplicated code such as, 2nd Random Block, 2nd Container block. Let's add `count=2` in Random block and Container 1 block.  Also uncomment image/container 1 block. Name should be random so you have to add index. Hint: `random_string.random[count.index].result`
+
+    [Solution](TF_BASICS/11-Multiple-Resources-count/main.tf)
+
+31. Run `terraform state list`. Notice indexes on Container and Random string.
+
+32. Let's configure output blocks. We do not want to repeat output block. But we can't use `count.index` in output block. Let's start with container name output. Remove output for container 2 name block. Use splat expression `*`. Hint: [Splat](https://www.terraform.io/docs/language/expressions/splat.html)
+
+    [Solution](TF_BASICS/12-Splat-Expression/main.tf)
+
+    
+
+
+
+
+   
+
+
+
+

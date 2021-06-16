@@ -8,6 +8,12 @@ terraform {
 
 provider "docker" {}
 
+resource "random_string" "random" {
+  length  = 4
+  special = false
+  upper   = false
+}
+
 resource "docker_image" "nodered_image" {
   name = "nodered/node-red:latest"
 }

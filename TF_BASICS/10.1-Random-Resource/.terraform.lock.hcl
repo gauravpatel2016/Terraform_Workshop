@@ -5,7 +5,6 @@ provider "registry.terraform.io/hashicorp/random" {
   version = "3.0.0"
   hashes = [
     "h1:grDzxfnOdFXi90FRIIwP/ZrCzirJ/SfsGBe6cE0Shg4=",
-    "h1:yhHJpb4IfQQfuio7qjUXuUFTU/s+ensuEpm23A+VWz0=",
     "zh:0fcb00ff8b87dcac1b0ee10831e47e0203a6c46aafd76cb140ba2bab81f02c6b",
     "zh:123c984c0e04bad910c421028d18aa2ca4af25a153264aef747521f4e7c36a17",
     "zh:287443bc6fd7fa9a4341dec235589293cbcc6e467a042ae225fd5d161e4e68dc",
@@ -20,28 +19,25 @@ provider "registry.terraform.io/hashicorp/random" {
 }
 
 provider "registry.terraform.io/kreuzwerker/docker" {
-  version = "2.12.2"
+  version = "2.8.0"
   hashes = [
-    "h1:c3m3y/kVhWhlEp6KJxNu5AWdgCLNyDZVuseyN/XVE2s=",
-    "zh:09cc24a0fc139d5d6b9c87f0a2524bb65f99292616b507247de6b6bb3c00574a",
-    "zh:0c6514395d58b12e2c31f414aab5ff10320631125910a290f8a1adf54ea1846d",
-    "zh:2233d3d86eae2a97623e6df9a39a596a81b0e7cb234546d49ab6591d3d0124e7",
-    "zh:5099fd407d99d45994ceda040fd2058c78409cd6eccff36b31a0024008d12112",
-    "zh:55b9d5bf30aeb90ffdd7897c5582a9065231b38e9b8b731546d6f91981987b36",
-    "zh:86ad339ae1ca6120e1be8a108ef90b23e3200e4e2c8e09d48cf01af4b5298672",
-    "zh:8cfefe6db6afa5330816b3de32f1f45e858166d706f3b7fb4d04d66b8052e575",
-    "zh:a737a9aea2bf52ec28a7d35617e374d5dc5f0e3d448ebdce85a0cafccb515232",
-    "zh:a8960217c2a0e0ee0314a1ffcd9dcb15bff8a1e13f329a3d19cd8d684e4124c1",
-    "zh:d210ce15bcf8af7f02ad13f1af6742bdb276bfec0dd80dbf00349fd6a643b385",
-    "zh:d37b58756b8fa1425391918b37b5793fa937d2c2ac5218cc5324a1faf588186b",
-    "zh:d8cfcd231a771240f659b059871ff3838634bb6c658dd171d8d246f4b0957cee",
-    "zh:e506a637f2bcdd440bf3f60b5ec07860fa01f7ab7431ba4ef2c6ad63a060523d",
+    "h1:T7griB0/qBDLxCWAmqXJaMFMC9QDPJArecoNnSkNxmA=",
+    "zh:001846931fa93e874d65512ac72e36f79464b86dd9769753acfff871d6acb1fd",
+    "zh:093f017ad043e0035c1ed62ebb4daf5f4e978e49534a24fba88f9f3fe206a0e0",
+    "zh:7ad122a675216450ade497acebd411277a875cfeac8ebb4bb21aaee16dbcc22a",
+    "zh:821c154735007592e3b656e359c1590ede80fae7bb3e55305e1b511973926bb1",
+    "zh:a58f8357a21f4243990f5b006eef5ea0ddf8beb91eae402f7af7a0da899f9feb",
+    "zh:b4e97b3923b3f115a040a7a84f7681bfb774e801162ec2fc834135444be50f93",
+    "zh:b4f6e3fa9314ea8c254ee001b272c0fd58372942e3177c318faa1a000d06fd67",
+    "zh:b7ec7c4fb28efbcdab62cbe11860d32915b1e5b19a75f4725aa3f64cc8e01a83",
+    "zh:c86b0ae710ee9747df3d37a365eed7dd7a2f7e240d414bd8c5c7ce3a84f808d2",
+    "zh:dff347b82a1fa7c492c1d546c09cb94e797cee33c759de2be17fb999f173238a",
+    "zh:f338c82c1e7ed8c2fffee5a15dac174d365ea2f22a976049aaba046237ad2aab",
   ]
 }
 
 provider "registry.terraform.io/terraform-providers/docker" {
-  version     = "2.7.2"
-  constraints = "~> 2.7.2"
+  version = "2.7.2"
   hashes = [
     "h1:06EZRBUCgKAVbtwOtE2I0giBUcpgENy+NUUMM88+siY=",
     "zh:23dfb4e5f3bcac95cb3fae489dd23caf8a433506198f56600a0e68982ebf5ea5",
