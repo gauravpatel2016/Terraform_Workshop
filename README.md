@@ -22,6 +22,8 @@
 
     [Solution](TF_BASICS/03-Your-First-Terraform-Apply/main.tf)
 
-4. Refer docker provider page and Install `nodered/node-red:latest` image using TF. Hint: `terraform apply`
+4. Verify if image has been created
 
-    [Solution](TF_BASICS/03-Your-First-Terraform-Apply/main.tf)
+   [Solution](## "This is Boostnote's repository").
+
+
