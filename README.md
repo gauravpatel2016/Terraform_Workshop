@@ -22,8 +22,28 @@
 
     [Solution](TF_BASICS/03-Your-First-Terraform-Apply/main.tf)
 
-4. Verify if image has been created
+4. Verify if image has been created.
 
-   [Solution](## "This is Boostnote's repository").
+   [Tooltip Solution](## "docker image ls | grep -i red")
+
+5. Verify *.tfstate file. Run Plan again. What happened?
+
+    [Tooltip Solution](## "No changes to Infrastructure")
+
+6. Run `terraform destroy`. Verify *.tfstate file. 
+
+   [Tooltip Solution](## "terraform destroy")
+
+7. Export plan file. Hint: `terraform plan --help`. Are you able to read it?
+
+   [Tooltip Solution](## "terraform plan -out=myTFPlan.plan")
+
+8. Utilize the plan that you created in above step in `terraform apply`. Did you get a prompt?
+
+   [Tooltip Solution](## "terraform plan myTFPlan.plan")
+
+9. Create a destroy plan (don't export). Hint: `terraform plan --help`
+
+   [Tooltip Solution](## "terraform plan -destroy")
 
 
