@@ -15,6 +15,7 @@
     [Solution](TF_BASICS/02-Terraform-Init-Deeper-Dive/main.tf)
 
 3. Refer docker provider page and Pull down `nodered/node-red:latest` docker image using TF. Hint: `terraform plan` followed by `terraform apply`
+
 ```
     Resource Name: `nodered_image`
     Name of image: `nodered/node-red:latest`
