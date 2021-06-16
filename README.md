@@ -50,4 +50,16 @@
 
     [Tooltip Solution](## "Most of the options are similar")
 
-11. Let's get back to our infrastructure. Docker image is useless without container. Create a container using terraform. Looking for a hint? [Click Here for Hint](https://www.google.com)
+11. Let's get back to our infrastructure. Docker image is useless without container. Create a nodered container using terraform. Use `docker ps` once you apply. Looking for a hint? [Click Here for Hint](https://www.google.com)
+
+    Resource Name: nodered_container <br />
+    Name of container: nodered
+
+    [Solution](TF_BASICS/05-Referencing-Other-Resources/main.tf)
+
+12. If you managed to create a container without looking the solution, Get ready for this. Expose nodered container. [Hint:](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/container#nestedblock--ports)
+
+    internal: 1880 <br />
+    external: 1880
+
+    [Solution](TF_BASICS/06-Viewing-Your-Deployment/main.tf)
