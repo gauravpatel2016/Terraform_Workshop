@@ -22,7 +22,7 @@
 
     [Solution](TF_BASICS/03-Your-First-Terraform-Apply/main.tf)
 
-4. Verify if image has been created.
+4. Yay. Now Verify if image has been created.If answer is yes, You are a Rockstar.
 
    [Tooltip Solution](## "docker image ls | grep -i red")
 
@@ -34,7 +34,7 @@
 
    [Tooltip Solution](## "terraform destroy")
 
-7. Export plan file. Hint: `terraform plan --help`. Are you able to read it?
+7. Congrats!!. You broke the infrastructure. Lets learn about back up plan file. Export plan file. Hint: `terraform plan --help`. Are you able to read it?
 
    [Tooltip Solution](## "terraform plan -out=myTFPlan.plan")
 
@@ -46,4 +46,8 @@
 
    [Tooltip Solution](## "terraform plan -destroy")
 
+10. Take a deep breath. Compare `terraform plan --help` vs `terraform apply --help`. What do you notice?
 
+    [Tooltip Solution](## "Most of the options are similar")
+
+11. Let's get back to our infrastructure. Docker image is useless without container. Create a container using terraform. Looking for a hint? [Click Here for Hint](https://www.google.com)
