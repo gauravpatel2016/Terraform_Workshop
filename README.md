@@ -161,16 +161,27 @@
 35. Create a variable `ext_port` for `external` port. Do same to `int_port` for `internal` Hint: [Variable Documentation](https://www.terraform.io/docs/language/values/variables.html)
 
     default = 1880
-    type = int
+    type = number
 
     [Solution](TF_BASICS/17-Adding-Variables/main.tf)
 
 36. Now comment `default` from `int_port`. Run `terraform plan` or `terraform apply`. What happened?
 
-37. Do not uncomment `default`. Check `terraform plan --help` and find to pass variable value via command line argument
+37. Do not uncomment `default`. Check `terraform plan --help` and find how to pass variable value via command line argument
 
     [Tooltip Solution](## 'terraform plan -var "int_port=1880"')
 
+38. Another option to set variable is using environment variable. Hint: [Env Variable Documentation](https://www.terraform.io/docs/language/values/variables.html#environment-variables)
+
+    [Tooltip Solution](## 'export TF_VAR_int_port=1880; terraform plan')
+
+39. Unset `TF_VAR_int_port` and Uncomment `default`. Check
+
+40. Ok now create another variable `container_count`
+
+41. Lets breakdown this file. Create `variables.tf` and add all variables there. Create `outputs.tf` and move output there.
+
+    [Solution](TF_BASICS/19-Variables-and-Outputs/)
 
 
 
