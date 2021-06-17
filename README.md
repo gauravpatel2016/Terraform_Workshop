@@ -169,7 +169,7 @@
 
 37. Do not uncomment `default`. Check `terraform plan --help` and find to pass variable value via command line argument
 
-    [Tooltip Solution](## "terraform plan -var "int_port=1880"")
+    [Tooltip Solution](## 'terraform plan -var "int_port=1880"')
 
 
 
