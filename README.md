@@ -261,13 +261,13 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     <summary>Let me verify if my answer is correct</summary>
     <p>
     ```
-    variable "image" {
-        type        = map(any)
-        description = "Image for container"
-        default = {
-            dev  = "nodered/node-red:latest"
-            prod = "nodered/node-red:latest-minimal"
-        }
+    variable "image" { <br />
+        type        = map(any) <br />
+        description = "Image for container" <br />
+        default = { <br />
+            dev  = "nodered/node-red:latest"<br />
+            prod = "nodered/node-red:latest-minimal"<br />
+        }<br />
     } 
     ```
     </p>
