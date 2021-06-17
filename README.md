@@ -294,7 +294,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     <p>
 
     ```
-        ext_port = {<br />
+        ext_port = {
             dev  = [1980, 1981]
             prod = [1880, 1881]
         }
