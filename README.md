@@ -151,7 +151,26 @@
 
     [Solution](TF_BASICS/12-Splat-Expression/main.tf)
 
-    
+33. Try replacing ip_address for container 1 to splat expression. What error do you get?
+
+34. For ip address, you have to use `for` loop. Hint: [For Documentation](https://www.terraform.io/docs/language/expressions/for.html)
+`[for i in docker_container.nodered_container[*] : i.name]`. Try with `terraform console` first before checking solution.
+
+    [Solution](TF_BASICS/13-For-Loops/main.tf)
+
+35. Create a variable `ext_port` for `external` port. Do same to `int_port` for `internal` Hint: [Variable Documentation](https://www.terraform.io/docs/language/values/variables.html)
+
+    default = 1880
+    type = int
+
+    [Solution](TF_BASICS/17-Adding-Variables/main.tf)
+
+36. Now comment `default` from `int_port`. Run `terraform plan` or `terraform apply`. What happened?
+
+37. Do not uncomment `default`. Check `terraform plan --help` and find to pass variable value via command line argument
+
+    [Tooltip Solution](## "terraform plan -var "int_port=1880"")
+
 
 
 
