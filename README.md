@@ -9,6 +9,9 @@
 In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sudo asks for password <br />
 `touch text.txt; sudo chmod 755 text.txt; rm.text.txt`
 
+### Things to consider while running Problem statements
+- Always `terraform destroy` after `terraform apply`. 
+
 ## Problem Statements
 1. Add a docker provider to main.tf. Is `version` optional?
 
@@ -243,7 +246,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 59. There are lots of changes. Let's run `terraform plan` and `terraform apply` to see if everything works. If not, check the solution.
 
-    [Solution](TF_BASICS/22-Local-Values)
+    [Solution](TF_BASICS/_19-Locals)
 
 60. Now Let's do a small refactor. Notice our docker_volume host path is hardcoded. Use string interpolation. Replace path to `"${path.cwd}/noderedvol"`
 
@@ -275,7 +278,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 64. Alright. We have defined variables with values. How our docker_image resource know what is the value of `env` and which `image` to use. Thanks to `lookup` function, this will be a piece of cake. Check documentation and complete the task. [Documentation](https://www.terraform.io/docs/language/functions/lookup.html)
 
-    [Solution](TF_BASICS/24-Maps-And-Lookups-pt1)
+    [Solution](TF_BASICS/_20-Maps)
 
 
 65. Let's reduce ports list to `1880` and Run `terraform apply` and hope everything works.
@@ -297,23 +300,23 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 67. Run `terraform plan`. What happened? Are you missing something? How about `lookup` in `main.tf` where you used `ext_port`
 
-    [Solution](TF_BASICS/25-Maps-And-Lookups-pt2)
+    [Solution](TF_BASICS/_21-Lookups)
 
 68. Run `terraform  plan` and `terraform apply`.
 
 69. Now create a directory named `image`. We are going to make this project modular. Create `main.tf`, `outputs.tf`, `providers.tf`, `variables.tf` inside this directory. We are going to move `docker_image` resource to this directory/main.tf
 
-    [Solution](TF_BASICS/26-First-Module-Image/image/)
+    [Solution](TF_BASICS/_22-Modules/image/)
 
 70. Let's copy docker provider to image/providers.tf
 
-    [Solution](TF_BASICS/26-First-Module-Image/image/providers.tf)
+    [Solution](TF_BASICS/_22-Modules/image/providers.tf)
 
 71. Create a docker_image resource in main.tf
 
     name = `var.image_in`
 
-    [Solution](TF_BASICS/26-First-Module-Image/image/main.tf)
+    [Solution](TF_BASICS/_22-Modules/image/main.tf)
 
 72. Now we have used `var.image_in`, let's define variable `image_in` in variables.tf
 
@@ -336,7 +339,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
     [Tooltip Solution]("## module.image.image_out")
 
-    [Solution](TF_BASICS/26-First-Module-Image/)
+    [Solution](TF_BASICS/_22-Modules/)
 
 78. Any idea how we are going to run this? First you have to `terraform init` in module `image` directory. Then in root module, `terraform plan` and `terraform apply` will work.
 
