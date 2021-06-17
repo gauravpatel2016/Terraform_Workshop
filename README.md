@@ -346,9 +346,11 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     <details>
     <summary>Solution</summary>
     <p>
+
     ```
          First you have to `terraform init` in module `image` directory. Then in root module, `terraform plan` and `terraform apply` will work.
     ```
+    
     </p>
     </details>
 
