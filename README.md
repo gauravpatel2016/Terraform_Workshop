@@ -44,27 +44,81 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 5. Verify *.tfstate file. Run Plan again. What happened?
 
-    [Tooltip Solution](## "No changes to Infrastructure")
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        No changes to Infrastructure
+    ```
+
+    </p>
+    </details>
 
 6. Run `terraform destroy`. Verify *.tfstate file. 
 
-   [Tooltip Solution](## "terraform destroy")
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        terraform destroy
+    ```
+
+    </p>
+    </details>
 
 7. Congrats!!. You broke the infrastructure. Let's learn about back up plan file. Export plan file. Hint: `terraform plan --help`. Are you able to read it?
 
-   [Tooltip Solution](## "terraform plan -out=myTFPlan.plan")
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        terraform plan -out=myTFPlan.plan
+    ```
+
+    </p>
+    </details>
 
 8. Utilize the plan that you created in above step in `terraform apply`. Did you get a prompt?
 
-   [Tooltip Solution](## "terraform plan myTFPlan.plan")
+     <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        terraform plan myTFPlan.plan
+    ```
+
+    </p>
+    </details>
 
 9. Create a destroy plan (don't export). Hint: `terraform plan --help`
 
-   [Tooltip Solution](## "terraform plan -destroy")
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        terraform plan -destroy
+    ```
+
+    </p>
+    </details>
 
 10. Take a deep breath. Compare `terraform plan --help` vs `terraform apply --help`. What do you notice?
 
-    [Tooltip Solution](## "Most of the options are similar")
+     <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        Most of the options are similar
+    ```
+
+    </p>
+    </details>
 
 11. Let's get back to our infrastructure. Docker image is useless without container. Create a nodered container using terraform. Use `docker ps` once you apply. Looking for a hint? [Click Here for Hint](https://www.google.com)
 
@@ -86,11 +140,29 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 15. Run `terraform state list`. Explain the output.
 
-    [Tooltip Solution](## "This will show you all the resources managed by terraform and listed in tfstate.")
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        This will show you all the resources managed by terraform and listed in tfstate.
+    ```
+
+    </p>
+    </details>
 
 16. Run `terraform console`. Then run `docker_container.nodered_container.name`. What do you get? Now see if you can get IP of the container.
 
-    [Tooltip Solution](## "docker_container.nodered_container.ip_address")
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        docker_container.nodered_container.ip_address
+    ```
+
+    </p>
+    </details>
 
 17. Let's get The IP address of the container and name of the container displayed on console after `terraform apply`. Hint: [Output Block](https://www.terraform.io/docs/language/values/outputs.html)
 
@@ -98,7 +170,17 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 18. For more advanced practice, go to `terraform console` and print external port to the console.
 
-    [Tooltip Solution](## "docker_container.nodered_container.ports[0].external")
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        docker_container.nodered_container.ports[0].external
+    ```
+
+    </p>
+    </details>
+
 
 19. Now we need to output IP address with port. To achieve this, we need to use terraform functions. See if you can `join` ip address and port seperated by colon in output block. Hint: [Join Function](https://www.terraform.io/docs/language/functions/join.html)
 
@@ -132,7 +214,16 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 24. Check the output of created random string. You do not need output block. You can verify this string somewhere in the code repository. You have learned it. Think about it.
 
-    [Tooltip Solution](## "terraform show | grep -i result")
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        terraform show | grep -i result
+    ```
+
+    </p>
+    </details>
 
 25. Alright !! So far so good. Now use a `join` function to add random string to name of the container 1. No Hint. You already know how to do this. 
 
@@ -187,11 +278,30 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 37. Do not uncomment `default`. Check `terraform plan --help` and find how to pass variable value via command line argument
 
-    [Tooltip Solution](## 'terraform plan -var "int_port=1880"')
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        terraform plan -var "int_port=1880"
+    ```
+
+    </p>
+    </details>
+
 
 38. Another option to set variable is using environment variable. Hint: [Env Variable Documentation](https://www.terraform.io/docs/language/values/variables.html#environment-variables)
 
-    [Tooltip Solution](## 'export TF_VAR_int_port=1880; terraform plan')
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        export TF_VAR_int_port=1880; terraform plan
+    ```
+
+    </p>
+    </details>
 
 39. Unset `TF_VAR_int_port` and Uncomment `default`. Check
 
@@ -229,7 +339,17 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 48. View Exposed Container in the browser
 
-    [Tooltip Solution](## 'http://localhost:1880')
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        http://localhost:1880
+    ```
+
+    </p>
+    </details>
+
 
 49. Create some chart in nodered. Later run `terraform destroy` then `terraform apply`. What do you notice?
 
@@ -239,7 +359,16 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 52. Hmm. Now you changed `type=list`. Think what should you change in `container resource` block in main.tf?
 
-    [Tooltip Solution](## 'change ext_port=var.ext_port[count.index]')
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+       change ext_port=var.ext_port[count.index]
+    ```
+
+    </p>
+    </details>
 
 53. Now you have to make sure you specify `count=2` in `container_count` variable. Run `terraform plan | grep external`. What do you get?
 
@@ -247,7 +376,17 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 55. Let's make this more flexible. We do not want to hardcode this number. How about container_count's count = list size? Check [length function](https://www.terraform.io/docs/language/functions/length.html)
 
-    [Tooltip Solution](## 'length(var.ext_port)')
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        length(var.ext_port)
+    ```
+
+    </p>
+    </details>
+
 
 56. Run `terraform plan`. What happend?
 
@@ -354,7 +493,17 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 77. Create output of child module `image_out` with value `docker_image.nodered_image.latest`. You need to use this in root module `main.tf`
 
-    [Tooltip Solution]("## module.image.image_out")
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+       module.image.image_out
+    ```
+
+    </p>
+    </details>
+
 
     [Solution](TF_BASICS/_22-Modules/)
 
