@@ -351,7 +351,8 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 [template_file](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file)<br />
 [data block](https://www.terraform.io/docs/language/data-sources/index.html)<br />
 
-
+[Terraform Associate Certification](https://learn.hashicorp.com/tutorials/terraform/associate-review)<br />
+[Terraform Certification Preparation](https://www.youtube.com/watch?v=og76ViVI4ow)<br />
 
 
 
