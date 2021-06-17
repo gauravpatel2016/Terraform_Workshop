@@ -90,14 +90,14 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 19. Now we need to output IP address with port. To achieve this, we need to use terraform functions. See if you can `join` ip address and port seperated by colon in output block. Hint: [Join Function](https://www.terraform.io/docs/language/functions/join.html)
 
-    [Solution](TF_BASICS/09-Join-Function/main.tf)
+    [Solution](TF_BASICS/_7-Join/main.tf)
 
 20. Now comment out `external` port in main.tf. Why? Because we are going to spin up more containers and we do not want to hard code external port. If you remove external port, docker will choose it for you dynamically. Now create another resource for container. You have to add another output too. Apply and verify 2 containers. Later destroy everything.
 
     Resource Name: nodered_container2 <br />
     Name of container: nodered2
 
-    [Solution](TF_BASICS/10-Random-Resource/main.tf)
+    [Solution](TF_BASICS/_8-Random/main.tf)
 
 21. Now if you're asked to create 4 containers!!! Nope, you don't have to copy/paste 4 times. Don't stress yourself. Let's do this step by step. There is an option to use `count=4` in container resource block. You don't need to add this line for now. Eventhough you add it,DO NOT RUN APPLY. Check this [document](https://www.terraform.io/docs/language/meta-arguments/count.html) first. Why we can't apply? Think about it. 
 
@@ -112,7 +112,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     
 22. Let's solve above problem first. Add another block for `Random String`. This block is not supported by Docker provider. You have to run a command which you already learned earlier after you add this block. Then run `terraform apply` Hint: [Random String](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) 
 
-    [Solution](TF_BASICS/10.1-Random-Resource/main.tf)
+    [Solution](TF_BASICS/_9-Random/main.tf)
 
 23. Now run `terraform state list`. What do you notice?
 
@@ -122,15 +122,15 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 25. Alright !! So far so good. Now use a `join` function to add random string to name of the container 1. No Hint. You already know how to do this. 
 
-    [Solution](TF_BASICS/10.2-Random-Resource/main.tf)
+    [Solution](TF_BASICS/_10-Random/main.tf)
 
 26. Create another random block and randomize container 2 name.
 
-    [Solution](TF_BASICS/10.2-Random-Resource/main.tf)
+    [Solution](TF_BASICS/_10-Random/main.tf)
 
 27. Well this code is super messy. 2 random blocks. 2 container blocks. 4 output blocks.Not anywhere near DRY (Do not Repeat Yourself). Remember option `count=4` ??? Comment out everything in your file EXCEPT provider block and first random block. Add `count = 2` to random block. Run `terraform apply`. Verify random string using a command that you learned earlier.
 
-    [Solution](TF_BASICS/10.3-Random-Resource/main.tf)
+    [Solution](TF_BASICS/_11-Random/main.tf)
 
     [Tooltip Solution](## "terraform show")
 
@@ -147,27 +147,27 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 30. Delete duplicated code such as, 2nd Random Block, 2nd Container block. Let's add `count=2` in Random block and Container 1 block.  Also uncomment image/container 1 block. Name should be random so you have to add index. Hint: `random_string.random[count.index].result`
 
-    [Solution](TF_BASICS/11-Multiple-Resources-count/main.tf)
+    [Solution](TF_BASICS/_12-Count/main.tf)
 
 31. Run `terraform state list`. Notice indexes on Container and Random string.
 
 32. Let's configure output blocks. We do not want to repeat output block. But we can't use `count.index` in output block. Let's start with container name output. Remove output for container 2 name block. Use splat expression `*`. Hint: [Splat](https://www.terraform.io/docs/language/expressions/splat.html)
 
-    [Solution](TF_BASICS/12-Splat-Expression/main.tf)
+    [Solution](TF_BASICS/_13-Splat/main.tf)
 
 33. Try replacing ip_address for container 1 to splat expression. What error do you get?
 
 34. For ip address, you have to use `for` loop. Hint: [For Documentation](https://www.terraform.io/docs/language/expressions/for.html)
 `[for i in docker_container.nodered_container[*] : i.name]`. Try with `terraform console` first before checking solution.
 
-    [Solution](TF_BASICS/13-For-Loops/main.tf)
+    [Solution](TF_BASICS/_14-For/main.tf)
 
 35. Create a variable `ext_port` for `external` port. Do same to `int_port` for `internal` Hint: [Variable Documentation](https://www.terraform.io/docs/language/values/variables.html)
 
     default = 1880
     type = number
 
-    [Solution](TF_BASICS/17-Adding-Variables/main.tf)
+    [Solution](TF_BASICS/_15-Variables/main.tf)
 
 36. Now comment `default` from `int_port`. Run `terraform plan` or `terraform apply`. What happened?
 
@@ -185,11 +185,11 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 41. Let's breakdown this file. Create `variables.tf` and add all variables there. Create `outputs.tf` and move output there. Also change `container_count = 1`
 
-    [Solution](TF_BASICS/19-Variables-and-Outputs/)
+    [Solution](TF_BASICS/_16-VarOutputs/)
 
 42. Now create a file `terraform.tfvars` and add a variable `ext_port=1880`. Run `terraform plan`. [Read documentation](https://www.terraform.io/docs/language/values/variables.html#variable-definitions-tfvars-files)
 
-    [Solution](TF_BASICS/20-Sensitive-Variables-Terraform-Tfvars/)
+    [Solution](TF_BASICS/_17-TFVAR/)
 
 
 43. There are so many ways you can define/pass variables. Read [Variable Precedence](https://www.terraform.io/docs/language/values/variables.html#variable-definition-precedence)
@@ -200,7 +200,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
     null_resource name: `dockervol`
 
-    [Solution](TF_BASICS/21-Docker-Volume-Local-Exec/main.tf)
+    [Solution](TF_BASICS/_18-DockerVol/main.tf)
 
 45. Run `terraform apply` and see directory structure. Run `terraform destroy`. Did it remove volume?
 
@@ -209,7 +209,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     container_path = "/data" <br />
     host_path      = "/home/ubuntu/environment/terraform-docker/noderedvol"
 
-    [Solution](TF_BASICS/21-Docker-Volume-Local-Exec/main.tf)
+    [Solution](TF_BASICS/_18-DockerVol/main.tf)
 
 47. Run `terraform apply` and verify directory structure. 
 
