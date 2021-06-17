@@ -346,6 +346,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 79. That's it folks. This should give you a good start. Below are some advanced concepts we use in our terraform projects.
 
 ### What's next?
+[How to use AWS Modules](https://www.twitch.tv/videos/1057924189?t=04h00m00s)
 [for_each](https://www.terraform.io/docs/language/meta-arguments/for_each.html)<br />
 [dynamic block](https://www.terraform.io/docs/language/expressions/dynamic-blocks.html)<br />
 [template_file](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file)<br />
