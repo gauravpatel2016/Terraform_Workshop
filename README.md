@@ -31,7 +31,16 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 4. Yay. Now Verify if image has been created.If answer is yes, You are a Rockstar.
 
-   [Tooltip Solution](## "docker image ls | grep -i red")
+    <details>
+    <summary>Solution</summary>
+    <p>
+
+    ```
+        docker image ls | grep -i red
+    ```
+
+    </p>
+    </details>
 
 5. Verify *.tfstate file. Run Plan again. What happened?
 
