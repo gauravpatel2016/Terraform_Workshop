@@ -24,7 +24,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     Name of image: nodered/node-red:latest
 
 
-    [Solution](TF_BASICS/_3-Apply_/main.tf)
+    [Solution](TF_BASICS/_3-Apply/main.tf)
 
 4. Yay. Now Verify if image has been created.If answer is yes, You are a Rockstar.
 
@@ -59,14 +59,14 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     Resource Name: nodered_container <br />
     Name of container: nodered
 
-    [Solution](TF_BASICS/05-Referencing-Other-Resources/main.tf)
+    [Solution](TF_BASICS/_4-Resources/main.tf)
 
 12. If you managed to create a container without looking the solution, Get ready for this. Expose nodered container. [Hint:](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/container#nestedblock--ports)
 
     internal: 1880 <br />
     external: 1880
 
-    [Solution](TF_BASICS/06-Viewing-Your-Deployment/main.tf)
+    [Solution](TF_BASICS/_5-VerifyDeploy/main.tf)
 
 13. Hope by now, you're impressed by Terraform. How did terraform know to create image first then container. Let's Discuss tfstate file and dependencies. Perform Plan -> Verify tfstate file > destroy -> Verify tfstate/tfstate.backup file -> apply -> Verify tfstate file. 
 
