@@ -301,5 +301,54 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 68. Run `terraform  plan` and `terraform apply`.
 
+69. Now create a directory named `image`. We are going to make this project modular. Create `main.tf`, `outputs.tf`, `providers.tf`, `variables.tf` inside this directory. We are going to move `docker_image` resource to this directory/main.tf
+
+    [Solution](TF_BASICS/26-First-Module-Image/image/)
+
+70. Let's copy docker provider to image/providers.tf
+
+    [Solution](TF_BASICS/26-First-Module-Image/image/providers.tf)
+
+71. Create a docker_image resource in main.tf
+
+    name = `var.image_in`
+
+    [Solution](TF_BASICS/26-First-Module-Image/image/main.tf)
+
+72. Now we have used `var.image_in`, let's define variable `image_in` in variables.tf
+
+73. Now in our TF_ROOT directory, delete `docker_image` resource block. We are going to use module `image` that we have defined.
+
+74. Add below code to main.tf:
+
+    ```
+    module "image" {
+        source   = "./image"
+        image_in = lookup(var.image, var.env)
+    }
+    ```
+
+75. Notice `module "image"` has option `image_in`. Our child module (`image` directory) is expecting variable `image_in`. This is how we pass the value to child module.
+
+76. Now in root module main.tf, our `docker_container` resource block `image` option is broken. How are you going to fix that? Check module documentation and see how to use module output. [Documentation](https://www.terraform.io/docs/language/modules/syntax.html#accessing-module-output-values)
+
+77. Create output of child module `image_out` with value `docker_image.nodered_image.latest`. You need to use this in root module `main.tf`
+
+    [Tooltip Solution]("## module.image.image_out")
+
+    [Solution](TF_BASICS/26-First-Module-Image/)
+
+78. Any idea how we are going to run this? First you have to `terraform init` in module `image` directory. Then in root module, `terraform plan` and `terraform apply` will work.
+
+79. That's it folks. This should give you a good start. Below are some advanced concepts we use in our terraform projects.
+
+### What's next?
+[for_each](https://www.terraform.io/docs/language/meta-arguments/for_each.html)
+[dynamic block](https://www.terraform.io/docs/language/expressions/dynamic-blocks.html)
+[template_file](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file)
+[data block](https://www.terraform.io/docs/language/data-sources/index.html)
+
+
+
 
 
