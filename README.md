@@ -82,7 +82,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 17. Let's get The IP address of the container and name of the container displayed on console after `terraform apply`. Hint: [Output Block](https://www.terraform.io/docs/language/values/outputs.html)
 
-    [Solution](TF_BASICS/08-Terraform-Console-Outputs/main.tf)
+    [Solution](TF_BASICS/_6-Output/main.tf)
 
 18. For more advanced practice, go to `terraform console` and print external port to the console.
 
