@@ -107,9 +107,11 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     <details>
     <summary>Let me verify if my answer is correct</summary>
     <p>
+
     ```
     Docker doesn't allow same name containers. So if you set count to 4, it will be failed. 
     ```
+
     </p>
     </details>  
     
@@ -264,6 +266,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     <summary>Let me verify if my answer is correct</summary>
     <p>
     ```
+
     variable "image" { <br />
         type        = map(any) <br />
         description = "Image for container" <br />
@@ -273,6 +276,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
         }<br />
     } 
     ```
+
     </p>
     </details>  
 
@@ -288,12 +292,14 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     <details>
     <summary>Hint</summary>
     <p>
+
     ```
         ext_port = {<br />
             dev  = [1980, 1981]<br />
             prod = [1880, 1881]<br />
         }
     ```
+
     </p>
     </details>
 
@@ -325,10 +331,12 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 74. Add below code to main.tf:
 
     ```
+
     module "image" {<br />
         source   = "./image"<br />
         image_in = lookup(var.image, var.env)<br />
     }
+    
     ```
 
 75. Notice `module "image"` has option `image_in`. Our child module (`image` directory) is expecting variable `image_in`. This is how we pass the value to child module.
@@ -350,7 +358,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     ```
          First you have to `terraform init` in module `image` directory. Then in root module, `terraform plan` and `terraform apply` will work.
     ```
-    
+
     </p>
     </details>
 
