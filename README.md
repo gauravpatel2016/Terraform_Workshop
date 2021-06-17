@@ -341,7 +341,16 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
     [Solution](TF_BASICS/_22-Modules/)
 
-78. Any idea how we are going to run this? First you have to `terraform init` in module `image` directory. Then in root module, `terraform plan` and `terraform apply` will work.
+78. Any idea how we are going to run this? 
+
+    <details>
+    <summary>Hint</summary>
+    <p>
+    ```
+         First you have to `terraform init` in module `image` directory. Then in root module, `terraform plan` and `terraform apply` will work.
+    ```
+    </p>
+    </details>
 
 79. That's it folks. This should give you a good start. Below are some advanced concepts we use in our terraform projects.
 
