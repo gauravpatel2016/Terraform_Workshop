@@ -16,7 +16,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 2. Run `terraform init` and notice which files are created
 
-    [Solution](TF_BASICS/02-Terraform-Init-Deeper-Dive/main.tf)
+    [Solution](TF_BASICS/_2-Init/main.tf)
 
 3. Refer docker provider page and Pull down `nodered/node-red:latest` docker image using TF. Hint: `terraform plan` followed by `terraform apply`
 
@@ -24,7 +24,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     Name of image: nodered/node-red:latest
 
 
-    [Solution](TF_BASICS/03-Your-First-Terraform-Apply/main.tf)
+    [Solution](TF_BASICS/_3-Apply_/main.tf)
 
 4. Yay. Now Verify if image has been created.If answer is yes, You are a Rockstar.
 
