@@ -12,7 +12,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 ## Problem Statements
 1. Add a docker provider to main.tf. Is `version` optional?
 
-    [Solution](TF_BASICS/01-The-Docker-Provider/main.tf)
+    [Solution](TF_BASICS/_1-Provider Intro/main.tf)
 
 2. Run `terraform init` and notice which files are created
 
