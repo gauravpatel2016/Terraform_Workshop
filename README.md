@@ -267,16 +267,16 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     <p>
 
     ```
-    variable "image" { <br />
-        type        = map(any) <br />
-        description = "Image for container" <br />
-        default = { <br />
-            dev  = "nodered/node-red:latest"<br />
-            prod = "nodered/node-red:latest-minimal"<br />
-        }<br />
+    variable "image" { 
+        type        = map(any) 
+        description = "Image for container" 
+        default = { 
+            dev  = "nodered/node-red:latest"
+            prod = "nodered/node-red:latest-minimal"
+        }
     } 
     ```
-    
+
     </p>
     </details>  
 
@@ -295,8 +295,8 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
     ```
         ext_port = {<br />
-            dev  = [1980, 1981]<br />
-            prod = [1880, 1881]<br />
+            dev  = [1980, 1981]
+            prod = [1880, 1881]
         }
     ```
 
