@@ -286,9 +286,9 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
     <summary>Hint</summary>
     <p>
     ```
-        ext_port = {
-            dev  = [1980, 1981]
-            prod = [1880, 1881]
+        ext_port = {<br />
+            dev  = [1980, 1981]<br />
+            prod = [1880, 1881]<br />
         }
     ```
     </p>
@@ -322,9 +322,9 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 74. Add below code to main.tf:
 
     ```
-    module "image" {
-        source   = "./image"
-        image_in = lookup(var.image, var.env)
+    module "image" {<br />
+        source   = "./image"<br />
+        image_in = lookup(var.image, var.env)<br />
     }
     ```
 
