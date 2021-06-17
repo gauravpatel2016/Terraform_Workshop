@@ -37,7 +37,7 @@ resource "docker_container" "nodered_container" {
   }
   volumes {
     container_path = "/data"
-    host_path      = "/home/ubuntu/environment/terraform-docker/noderedvol"
+    host_path      = "/Users/gpatel/Code/Terraform_Workshop/TF_BASICS/21-Docker-Volume-Local-Exec/noderedvol"
   }
 }
 

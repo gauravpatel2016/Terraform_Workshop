@@ -4,6 +4,10 @@
 - Terraform (brew install terraform)
 - Docker 
 
+### Execute this command before problem statements
+
+In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sudo asks for password <br />
+`touch text.txt; sudo chmod 755 text.txt; rm.text.txt`
 
 ## Problem Statements
 1. Add a docker provider to main.tf. Is `version` optional?
@@ -34,7 +38,7 @@
 
    [Tooltip Solution](## "terraform destroy")
 
-7. Congrats!!. You broke the infrastructure. Lets learn about back up plan file. Export plan file. Hint: `terraform plan --help`. Are you able to read it?
+7. Congrats!!. You broke the infrastructure. Let's learn about back up plan file. Export plan file. Hint: `terraform plan --help`. Are you able to read it?
 
    [Tooltip Solution](## "terraform plan -out=myTFPlan.plan")
 
@@ -106,7 +110,7 @@
     </p>
     </details>  
     
-22. Lets solve above problem first. Add another block for `Random String`. This block is not supported by Docker provider. You have to run a command which you already learned earlier after you add this block. Then run `terraform apply` Hint: [Random String](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) 
+22. Let's solve above problem first. Add another block for `Random String`. This block is not supported by Docker provider. You have to run a command which you already learned earlier after you add this block. Then run `terraform apply` Hint: [Random String](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) 
 
     [Solution](TF_BASICS/10.1-Random-Resource/main.tf)
 
@@ -179,15 +183,123 @@
 
 40. Ok now create another variable `container_count`
 
-41. Lets breakdown this file. Create `variables.tf` and add all variables there. Create `outputs.tf` and move output there.
+41. Let's breakdown this file. Create `variables.tf` and add all variables there. Create `outputs.tf` and move output there. Also change `container_count = 1`
 
     [Solution](TF_BASICS/19-Variables-and-Outputs/)
 
+42. Now create a file `terraform.tfvars` and add a variable `ext_port=1880`. Run `terraform plan`. [Read documentation](https://www.terraform.io/docs/language/values/variables.html#variable-definitions-tfvars-files)
+
+    [Solution](TF_BASICS/20-Sensitive-Variables-Terraform-Tfvars/)
 
 
+43. There are so many ways you can define/pass variables. Read [Variable Precedence](https://www.terraform.io/docs/language/values/variables.html#variable-definition-precedence)
 
-   
+44. Now we are going to run commands inside docker container. For that, you can use `local_exec` [local_exec Documentation](https://www.terraform.io/docs/language/resources/provisioners/local-exec.html) . You can pass local_exec provisioner to resource block directly but we are going to use [null_resource block](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource)
 
+    Run command `mkdir noderedvol/ || true && sudo chown -R 1000:1000 noderedvol/` 
+
+    null_resource name: `dockervol`
+
+    [Solution](TF_BASICS/21-Docker-Volume-Local-Exec/main.tf)
+
+45. Run `terraform apply` and see directory structure. Run `terraform destroy`. Did it remove volume?
+
+46. Now Add volume to docker_container resource. Hint: [Documentation](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs/resources/container#nestedblock--volumes)
+
+    container_path = "/data" <br />
+    host_path      = "/home/ubuntu/environment/terraform-docker/noderedvol"
+
+    [Solution](TF_BASICS/21-Docker-Volume-Local-Exec/main.tf)
+
+47. Run `terraform apply` and verify directory structure. 
+
+48. View Exposed Container in the browser
+
+    [Tooltip Solution](## 'http://localhost:1880')
+
+49. Create some chart in nodered. Later run `terraform destroy` then `terraform apply`. What do you notice?
+
+50. Now Let's make our `ext_port` more predictable. If we increase no. of containers, we can't define `ext_port` unless we specify port number as a list. So first, go to `tfvars` file and make `ext_port` as a list `[1880,1881]`
+
+51. Then, Change `ext_port` variable definition to `type=list(any)`. Think where is this defined?
+
+52. Hmm. Now you changed `type=list`. Think what should you change in `container resource` block in main.tf?
+
+    [Tooltip Solution](## 'change ext_port=var.ext_port[count.index]')
+
+53. Now you have to make sure you specify `count=2` in `container_count` variable. Run `terraform plan | grep external`. What do you get?
+
+54. Change `count=3` in `container_count` variable. Run `terraform plan | grep external`. What do you get?
+
+55. Let's make this more flexible. We do not want to hardcode this number. How about container_count's count = list size? Check [length function](https://www.terraform.io/docs/language/functions/length.html)
+
+    [Tooltip Solution](## 'length(var.ext_port)')
+
+56. Run `terraform plan`. What happend?
+
+57. To use function, you have to use `locals` [Documentation](https://www.terraform.io/docs/language/values/locals.html)
+
+58. Now that you have added locals. You have to reference `container_count` in main.tf differently. It is not `var` anymore. Check documentation on how to use local. [Documentation](https://www.terraform.io/docs/language/values/locals.html)
+
+59. There are lots of changes. Let's run `terraform plan` and `terraform apply` to see if everything works. If not, check the solution.
+
+    [Solution](TF_BASICS/22-Local-Values)
+
+60. Now Let's do a small refactor. Notice our docker_volume host path is hardcoded. Use string interpolation. Replace path to `"${path.cwd}/noderedvol"`
+
+61. We now want to introduce 2 lanes. dev and prod. We want to use different nodered images for dev and prod. Let's see how to do this step by step. 
+
+62. Define `env` variable with `default` value = `dev`
+
+63. Define `image` variable block.  Hint: [variable type map example](https://www.terraform.io/docs/configuration-0-11/variables.html#example)
+
+    Use dev = `nodered/node-red:latest` <br />
+        prod = `nodered/node-red:latest-minimal`
+
+    
+    <details>
+    <summary>Let me verify if my answer is correct</summary>
+    <p>
+    ```
+    variable "image" {
+        type        = map(any)
+        description = "Image for container"
+        default = {
+            dev  = "nodered/node-red:latest"
+            prod = "nodered/node-red:latest-minimal"
+        }
+    } 
+    ```
+    </p>
+    </details>  
+
+64. Alright. We have defined variables with values. How our docker_image resource know what is the value of `env` and which `image` to use. Thanks to `lookup` function, this will be a piece of cake. Check documentation and complete the task. [Documentation](https://www.terraform.io/docs/language/functions/lookup.html)
+
+    [Solution](TF_BASICS/24-Maps-And-Lookups-pt1)
+
+
+65. Let's reduce ports list to `1880` and Run `terraform apply` and hope everything works.
+
+66. Ok. Can you do same for ext_port now? I want to use, `[1980.1981]` if `env=dev` and `[1880,1881]` if `env=prod`. Give it a shot.
+
+    <details>
+    <summary>Hint</summary>
+    <p>
+    ```
+        ext_port = {
+            dev  = [1980, 1981]
+            prod = [1880, 1881]
+        }
+    ```
+    </p>
+    </details>
+
+
+67. Run `terraform plan`. What happened? Are you missing something? How about `lookup` in `main.tf` where you used `ext_port`
+
+    [Solution](TF_BASICS/25-Maps-And-Lookups-pt2)
+
+68. Run `terraform  plan` and `terraform apply`.
 
 
 
