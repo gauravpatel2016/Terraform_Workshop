@@ -318,7 +318,7 @@ In `docker_volume` section, we run `sudo` and `terraform apply` will fail if sud
 
 43. There are so many ways you can define/pass variables. Read [Variable Precedence](https://www.terraform.io/docs/language/values/variables.html#variable-definition-precedence)
 
-44. Now we are going to run commands inside docker container. For that, you can use `local_exec` [local_exec Documentation](https://www.terraform.io/docs/language/resources/provisioners/local-exec.html) . You can pass local_exec provisioner to resource block directly but we are going to use [null_resource block](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource)
+44.  Run `terraform apply` first. Do not destroy. Now we are going to run commands inside docker container. For that, you can use `local_exec` [local_exec Documentation](https://www.terraform.io/docs/language/resources/provisioners/local-exec.html) . You can pass local_exec provisioner to resource block directly but we are going to use [null_resource block](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource)
 
     Run command `mkdir noderedvol/ || true && sudo chown -R 1000:1000 noderedvol/` 
 
